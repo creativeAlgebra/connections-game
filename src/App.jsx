@@ -1,3 +1,100 @@
+# Complete Project Files
+
+Create these files in your GitHub repo in this exact structure:
+
+---
+
+## **File 1: `package.json`**
+(Create new file in repo root)
+
+```json
+{
+  "name": "connections-game",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.263.1"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1"
+  }
+}
+```
+
+---
+
+## **File 2: `public/index.html`**
+(Create folder `public` first, then create `index.html` inside)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Structure Your Thinking - Connections game for cognitive systems design"
+    />
+    <title>Connections Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+---
+
+## **File 3: `src/index.js`**
+(Create folder `src` first, then create `index.js` inside)
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+---
+
+## **File 4: `src/App.jsx`**
+(This is your React component - paste the entire game code here)
+
+```jsx
 import React, { useState, useEffect } from 'react';
 import { Shuffle, RotateCcw } from 'lucide-react';
 
@@ -319,3 +416,90 @@ const ConnectionsGame = () => {
 };
 
 export default ConnectionsGame;
+```
+
+---
+
+## **File 5: `.gitignore`**
+(Create in repo root)
+
+```
+node_modules/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+build/
+dist/
+.DS_Store
+```
+
+---
+
+## **File 6: `README.md`**
+(Update the existing one)
+
+```markdown
+# Connections Game
+
+An interactive puzzle game for understanding cognitive systems design and AI collaboration frameworks.
+
+## How to Play
+
+Find the four groups of connected terms. Each group represents a thinking framework or methodology.
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub
+2. Go to vercel.com
+3. Click "New Project"
+4. Select this repository
+5. Click "Deploy"
+
+That's it. Vercel handles the rest.
+
+## Local Development
+
+```bash
+npm install
+npm start
+```
+
+Your app will run on `http://localhost:3000`
+```
+
+---
+
+## **How to Add These Files to GitHub**
+
+1. Go to your `connections-game` repo on GitHub
+2. Click "Add file" → "Create new file"
+3. For each file above:
+   - Copy the file path (e.g., `package.json`)
+   - Paste the code
+   - Click "Commit changes"
+
+**Order matters:**
+- `package.json` (root level)
+- `public/index.html` (in public folder)
+- `src/index.js` (in src folder)
+- `src/App.jsx` (in src folder)
+- `.gitignore` (root level)
+- `README.md` (root level)
+
+---
+
+## **Then Deploy to Vercel**
+
+1. Go to vercel.com
+2. Sign in with GitHub
+3. Click "New Project"
+4. Select `connections-game`
+5. Click "Deploy"
+
+Vercel will automatically detect it's a React app, install dependencies, build it, and deploy it.
+
+Done.
