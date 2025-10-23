@@ -124,6 +124,29 @@ const ConnectionsGame = () => {
     }
   };
 
+  const giveUp = () => {
+    // Find an unsolved category and reveal it
+    const puzzle = puzzles[currentPuzzle];
+    const unsolvedCategories = puzzle.categories
+      .map((_, idx) => idx)
+      .filter(idx => !solved.includes(idx));
+    
+    if (unsolvedCategories.length > 0) {
+      const nextCategory = unsolvedCategories[0]; // Take the first unsolved category
+      const newSolved = [...solved, nextCategory];
+      setSolved(newSolved);
+      setSelected([]);
+      setMessage("Category revealed!");
+      setMistakes(0); // Reset mistakes when revealing a category
+      
+      if (newSolved.length === 4) {
+        setGameWon(true);
+      }
+      
+      setTimeout(() => setMessage(""), 2000);
+    }
+  };
+
   const checkSubmission = () => {
     if (selected.length !== 4) return;
 
@@ -135,6 +158,7 @@ const ConnectionsGame = () => {
       setSolved(newSolved);
       setSelected([]);
       setMessage("✓");
+      setMistakes(0); // Reset mistakes on correct answer
       
       if (newSolved.length === 4) {
         setGameWon(true);
@@ -142,6 +166,7 @@ const ConnectionsGame = () => {
     } else if (categoryIndices.size === 2) {
       if (mistakes >= 3) {
         // At 0 mistakes remaining, reveal a hint (one unsolved category)
+        const puzzle = puzzles[currentPuzzle];
         const unsolvedCategories = puzzle.categories
           .map((_, idx) => idx)
           .filter(idx => !solved.includes(idx));
@@ -152,6 +177,7 @@ const ConnectionsGame = () => {
           setSolved(newSolved);
           setSelected([]);
           setMessage("💡 Hint revealed!");
+          setMistakes(0); // Reset mistakes when hint is revealed
         }
       } else {
         setMessage("One away");
@@ -160,6 +186,7 @@ const ConnectionsGame = () => {
     } else {
       if (mistakes >= 3) {
         // At 0 mistakes remaining, reveal a hint (one unsolved category)
+        const puzzle = puzzles[currentPuzzle];
         const unsolvedCategories = puzzle.categories
           .map((_, idx) => idx)
           .filter(idx => !solved.includes(idx));
@@ -170,6 +197,7 @@ const ConnectionsGame = () => {
           setSolved(newSolved);
           setSelected([]);
           setMessage("💡 Hint revealed!");
+          setMistakes(0); // Reset mistakes when hint is revealed
         }
       } else {
         setMessage("Not quite");
