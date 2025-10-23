@@ -217,8 +217,8 @@ const ConnectionsGame = () => {
   const categoryColors = ["bg-blue-600", "bg-green-600", "bg-yellow-600", "bg-purple-600"];
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
-      <div className="w-full max-w-2xl">
+    <div className="bg-white p-4 md:p-6" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
+      <div className="w-full max-w-2xl mx-auto">
         {/* Game Grid */}
         <div className="mb-6">
           {/* Unsolved Terms Grid */}
