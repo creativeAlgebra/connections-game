@@ -164,7 +164,7 @@ const ConnectionsGame = () => {
         {/* Header */}
         <div className="mb-6 md:mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 900 }}>Structure Your Thinking</h1>
-          <p className="text-slate-400 text-xs md:text-sm">Find the four groups. Refine your methodology.</p>
+          <p className="text-slate-400 text-xs md:text-sm">Find the four groups of four. Refine your methodology.</p>
         </div>
 
         {/* Game Grid */}
