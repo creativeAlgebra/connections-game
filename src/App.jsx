@@ -219,8 +219,6 @@ const ConnectionsGame = () => {
   return (
     <div className="min-h-screen bg-white p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
       <div className="w-full max-w-2xl">
-        {/* Header */}
-
         {/* Game Grid */}
         <div className="mb-6">
           {/* Unsolved Terms Grid */}
