@@ -140,11 +140,41 @@ const ConnectionsGame = () => {
         setGameWon(true);
       }
     } else if (categoryIndices.size === 2) {
-      setMessage("One away");
-      setMistakes(mistakes + 1);
+      if (mistakes >= 3) {
+        // At 0 mistakes remaining, reveal a hint (one unsolved category)
+        const unsolvedCategories = puzzle.categories
+          .map((_, idx) => idx)
+          .filter(idx => !solved.includes(idx));
+        
+        if (unsolvedCategories.length > 0) {
+          const randomHintIdx = unsolvedCategories[Math.floor(Math.random() * unsolvedCategories.length)];
+          const newSolved = [...solved, randomHintIdx];
+          setSolved(newSolved);
+          setSelected([]);
+          setMessage("💡 Hint revealed!");
+        }
+      } else {
+        setMessage("One away");
+        setMistakes(mistakes + 1);
+      }
     } else {
-      setMessage("Not quite");
-      setMistakes(mistakes + 1);
+      if (mistakes >= 3) {
+        // At 0 mistakes remaining, reveal a hint (one unsolved category)
+        const unsolvedCategories = puzzle.categories
+          .map((_, idx) => idx)
+          .filter(idx => !solved.includes(idx));
+        
+        if (unsolvedCategories.length > 0) {
+          const randomHintIdx = unsolvedCategories[Math.floor(Math.random() * unsolvedCategories.length)];
+          const newSolved = [...solved, randomHintIdx];
+          setSolved(newSolved);
+          setSelected([]);
+          setMessage("💡 Hint revealed!");
+        }
+      } else {
+        setMessage("Not quite");
+        setMistakes(mistakes + 1);
+      }
     }
 
     setTimeout(() => setMessage(""), 2000);
