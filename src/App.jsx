@@ -234,7 +234,7 @@ const ConnectionsGame = () => {
                   key={idx}
                   onClick={() => toggleSelect(idx)}
                   disabled={isSolved}
-                  className={`p-2 md:p-4 rounded-lg font-bold text-xs sm:text-sm md:text-base transition-all leading-tight ${
+                  className={`aspect-square p-2 md:p-4 rounded-lg font-bold text-xs sm:text-sm md:text-base transition-all leading-tight flex items-center justify-center ${
                     isSelected
                       ? 'bg-slate-900 text-white scale-95 shadow-lg border-2 border-slate-900'
                       : 'bg-slate-100 text-slate-900 hover:bg-slate-200 border-2 border-slate-200'
@@ -283,12 +283,14 @@ const ConnectionsGame = () => {
             >
               Reset
             </button>
-            <button
-              onClick={giveUp}
-              className="px-4 py-3 md:py-2 bg-orange-600 text-white text-xs md:text-sm rounded-lg hover:bg-orange-700 transition flex-1 md:flex-none font-semibold"
-            >
-              Give Up
-            </button>
+            {mistakes >= 4 && (
+              <button
+                onClick={giveUp}
+                className="px-4 py-3 md:py-2 bg-orange-600 text-white text-xs md:text-sm rounded-lg hover:bg-orange-700 transition flex-1 md:flex-none font-semibold"
+              >
+                Give Up
+              </button>
+            )}
           </div>
           <button
             onClick={checkSubmission}
