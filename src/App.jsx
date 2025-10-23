@@ -159,18 +159,18 @@ const ConnectionsGame = () => {
   const categoryColors = ["bg-blue-600", "bg-green-600", "bg-yellow-600", "bg-purple-600"];
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
+    <div className="min-h-screen bg-slate-950 p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
       <div className="w-full max-w-2xl">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 900 }}>Structure Your Thinking</h1>
-          <p className="text-slate-400 text-sm">Find the four groups. Refine your methodology.</p>
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 900 }}>Structure Your Thinking</h1>
+          <p className="text-slate-400 text-xs md:text-sm">Find the four groups. Refine your methodology.</p>
         </div>
 
         {/* Game Grid */}
         <div className="mb-6">
           {/* Unsolved Terms Grid */}
-          <div className="grid grid-cols-4 gap-2 mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-2 mb-4">
             {shuffledTerms.map((item, idx) => {
               const isSolved = solved.includes(item.categoryIdx);
               const isSelected = selected.includes(idx);
@@ -182,7 +182,7 @@ const ConnectionsGame = () => {
                   key={idx}
                   onClick={() => toggleSelect(idx)}
                   disabled={isSolved}
-                  className={`p-4 rounded font-bold text-sm transition-all ${
+                  className={`p-3 md:p-4 rounded font-bold text-xs md:text-sm transition-all ${
                     isSelected
                       ? 'bg-slate-300 text-slate-900 scale-95 shadow-lg'
                       : 'bg-slate-700 text-slate-100 hover:bg-slate-600'
@@ -195,17 +195,17 @@ const ConnectionsGame = () => {
           </div>
 
           {/* Solved Categories (stacked) */}
-          <div className="space-y-2 mb-6">
+          <div className="space-y-2 mb-4 md:mb-6">
             {puzzle.categories.map((cat, idx) => {
               if (!solved.includes(idx)) return null;
               const color = categoryColors[idx];
               return (
-                <div key={idx} className={`${color} p-4 rounded text-white`}>
-                  <h3 className="font-bold text-sm">{cat.name}</h3>
+                <div key={idx} className={`${color} p-3 md:p-4 rounded text-white`}>
+                  <h3 className="font-bold text-xs md:text-sm">{cat.name}</h3>
                   <p className="text-xs opacity-90 mt-1">{cat.description}</p>
                   <div className="text-xs opacity-75 mt-2 flex flex-wrap gap-1">
                     {cat.terms.map(term => (
-                      <span key={term} className="bg-black bg-opacity-30 px-2 py-1 rounded">
+                      <span key={term} className="bg-black bg-opacity-30 px-2 py-1 rounded text-xs">
                         {term}
                       </span>
                     ))}
@@ -217,17 +217,17 @@ const ConnectionsGame = () => {
         </div>
 
         {/* Controls */}
-        <div className="flex gap-2 justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row gap-2 justify-between items-stretch md:items-center mb-4">
           <div className="flex gap-2">
             <button
               onClick={handleShuffle}
-              className="flex items-center gap-2 px-3 py-2 bg-slate-700 text-white text-sm rounded hover:bg-slate-600 transition"
+              className="flex items-center justify-center gap-2 px-3 py-2 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded hover:bg-slate-600 transition flex-1 md:flex-none"
             >
               <Shuffle size={16} /> Shuffle
             </button>
             <button
               onClick={() => setSelected([])}
-              className="px-3 py-2 bg-slate-700 text-white text-sm rounded hover:bg-slate-600 transition"
+              className="px-3 py-2 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded hover:bg-slate-600 transition flex-1 md:flex-none"
             >
               Clear
             </button>
@@ -235,7 +235,7 @@ const ConnectionsGame = () => {
           <button
             onClick={checkSubmission}
             disabled={selected.length !== 4}
-            className="px-6 py-2 bg-slate-200 text-slate-900 font-bold rounded hover:bg-white disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed transition"
+            className="px-6 py-2 md:py-2 bg-slate-200 text-slate-900 font-bold text-sm md:text-base rounded hover:bg-white disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed transition"
           >
             Submit
           </button>
