@@ -220,10 +220,6 @@ const ConnectionsGame = () => {
     <div className="min-h-screen bg-white p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
       <div className="w-full max-w-2xl">
         {/* Header */}
-        <div className="mb-6 md:mb-8">
-          <h1 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>Structure Your Thinking</h1>
-          <p className="text-slate-600 text-xs md:text-sm">Find the four groups. Refine your methodology.</p>
-        </div>
 
         {/* Game Grid */}
         <div className="mb-6">
