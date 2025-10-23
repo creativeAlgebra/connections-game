@@ -170,7 +170,7 @@ const ConnectionsGame = () => {
         {/* Game Grid */}
         <div className="mb-6">
           {/* Unsolved Terms Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-3 mb-6">
+          <div className="grid grid-cols-4 gap-2 mb-6">
             {shuffledTerms.map((item, idx) => {
               const isSolved = solved.includes(item.categoryIdx);
               const isSelected = selected.includes(idx);
@@ -182,7 +182,7 @@ const ConnectionsGame = () => {
                   key={idx}
                   onClick={() => toggleSelect(idx)}
                   disabled={isSolved}
-                  className={`p-4 md:p-5 rounded-xl font-bold text-sm md:text-base transition-all ${
+                  className={`p-2 md:p-4 rounded-lg font-bold text-xs sm:text-sm md:text-base transition-all leading-tight ${
                     isSelected
                       ? 'bg-slate-900 text-white scale-95 shadow-lg border-2 border-slate-900'
                       : 'bg-slate-100 text-slate-900 hover:bg-slate-200 border-2 border-slate-200'
