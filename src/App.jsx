@@ -261,6 +261,12 @@ const ConnectionsGame = () => {
             >
               Reset
             </button>
+            <button
+              onClick={giveUp}
+              className="px-4 py-3 md:py-2 bg-orange-600 text-white text-xs md:text-sm rounded-lg hover:bg-orange-700 transition flex-1 md:flex-none font-semibold"
+            >
+              Give Up
+            </button>
           </div>
           <button
             onClick={checkSubmission}
