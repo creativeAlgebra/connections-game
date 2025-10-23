@@ -87,7 +87,6 @@ const ConnectionsGame = () => {
   const [message, setMessage] = useState("");
   const [gameWon, setGameWon] = useState(false);
   const [mistakes, setMistakes] = useState(0);
-  const [hintsUsed, setHintsUsed] = useState([]);
 
   useEffect(() => {
     initializeGame();
@@ -113,7 +112,6 @@ const ConnectionsGame = () => {
     setMessage("");
     setGameWon(false);
     setMistakes(0);
-    setHintsUsed([]);
   };
 
   const toggleSelect = (index) => {
