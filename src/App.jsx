@@ -1,3 +1,100 @@
+# Complete Project Files
+
+Create these files in your GitHub repo in this exact structure:
+
+---
+
+## **File 1: `package.json`**
+(Create new file in repo root)
+
+```json
+{
+  "name": "connections-game",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.263.1"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1"
+  }
+}
+```
+
+---
+
+## **File 2: `public/index.html`**
+(Create folder `public` first, then create `index.html` inside)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Structure Your Thinking - Connections game for cognitive systems design"
+    />
+    <title>Connections Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+---
+
+## **File 3: `src/index.js`**
+(Create folder `src` first, then create `index.js` inside)
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+---
+
+## **File 4: `src/App.jsx`**
+(This is your React component - paste the entire game code here)
+
+```jsx
 import React, { useState, useEffect } from 'react';
 import { Shuffle, RotateCcw } from 'lucide-react';
 
@@ -159,18 +256,18 @@ const ConnectionsGame = () => {
   const categoryColors = ["bg-blue-600", "bg-green-600", "bg-yellow-600", "bg-purple-600"];
 
   return (
-    <div className="min-h-screen bg-slate-950 p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
+    <div className="min-h-screen bg-white p-4 md:p-6 flex items-center justify-center" style={{ fontFamily: '"Source Sans Pro", sans-serif' }}>
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="mb-6 md:mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 900 }}>Structure Your Thinking</h1>
-          <p className="text-slate-400 text-xs md:text-sm">Find the four groups of four. Refine your methodology.</p>
+          <h1 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>Structure Your Thinking</h1>
+          <p className="text-slate-600 text-xs md:text-sm">Find the four groups. Refine your methodology.</p>
         </div>
 
         {/* Game Grid */}
         <div className="mb-6">
           {/* Unsolved Terms Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-2 mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-3 mb-6">
             {shuffledTerms.map((item, idx) => {
               const isSolved = solved.includes(item.categoryIdx);
               const isSelected = selected.includes(idx);
@@ -182,10 +279,10 @@ const ConnectionsGame = () => {
                   key={idx}
                   onClick={() => toggleSelect(idx)}
                   disabled={isSolved}
-                  className={`p-3 md:p-4 rounded font-bold text-xs md:text-sm transition-all ${
+                  className={`p-4 md:p-5 rounded-xl font-bold text-sm md:text-base transition-all ${
                     isSelected
-                      ? 'bg-slate-300 text-slate-900 scale-95 shadow-lg'
-                      : 'bg-slate-700 text-slate-100 hover:bg-slate-600'
+                      ? 'bg-slate-900 text-white scale-95 shadow-lg border-2 border-slate-900'
+                      : 'bg-slate-100 text-slate-900 hover:bg-slate-200 border-2 border-slate-200'
                   }`}
                 >
                   {item.term}
@@ -200,12 +297,12 @@ const ConnectionsGame = () => {
               if (!solved.includes(idx)) return null;
               const color = categoryColors[idx];
               return (
-                <div key={idx} className={`${color} p-3 md:p-4 rounded text-white`}>
+                <div key={idx} className={`${color} p-4 md:p-5 rounded-lg text-white`}>
                   <h3 className="font-bold text-xs md:text-sm">{cat.name}</h3>
-                  <p className="text-xs opacity-90 mt-1">{cat.description}</p>
-                  <div className="text-xs opacity-75 mt-2 flex flex-wrap gap-1">
+                  <p className="text-xs opacity-90 mt-2">{cat.description}</p>
+                  <div className="text-xs opacity-90 mt-3 flex flex-wrap gap-2">
                     {cat.terms.map(term => (
-                      <span key={term} className="bg-black bg-opacity-30 px-2 py-1 rounded text-xs">
+                      <span key={term} className="bg-white bg-opacity-20 px-3 py-1 rounded text-xs">
                         {term}
                       </span>
                     ))}
@@ -217,59 +314,59 @@ const ConnectionsGame = () => {
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col md:flex-row gap-2 justify-between items-stretch md:items-center mb-4">
+        <div className="flex flex-col md:flex-row gap-3 justify-between items-stretch md:items-center mb-4">
           <div className="flex gap-2">
             <button
               onClick={handleShuffle}
-              className="flex items-center justify-center gap-2 px-3 py-2 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded hover:bg-slate-600 transition flex-1 md:flex-none"
+              className="flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded-lg hover:bg-slate-800 transition flex-1 md:flex-none font-semibold"
             >
               <Shuffle size={16} /> Shuffle
             </button>
             <button
               onClick={() => setSelected([])}
-              className="px-3 py-2 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded hover:bg-slate-600 transition flex-1 md:flex-none"
+              className="px-4 py-3 md:py-2 bg-slate-700 text-white text-xs md:text-sm rounded-lg hover:bg-slate-800 transition flex-1 md:flex-none font-semibold"
             >
-              Clear
+              Reset
             </button>
           </div>
           <button
             onClick={checkSubmission}
             disabled={selected.length !== 4}
-            className="px-6 py-2 md:py-2 bg-slate-200 text-slate-900 font-bold text-sm md:text-base rounded hover:bg-white disabled:bg-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed transition"
+            className="px-8 py-3 md:py-2 bg-green-600 text-white font-bold text-sm md:text-base rounded-lg hover:bg-green-700 disabled:bg-slate-400 disabled:text-slate-200 disabled:cursor-not-allowed transition"
           >
-            Submit
+            SUBMIT
           </button>
         </div>
 
         {/* Message & Mistakes */}
         <div className="flex justify-between items-center mb-6">
           {message && (
-            <div className={`font-bold ${
-              message === "✓" ? 'text-green-400' : 'text-slate-400'
+            <div className={`font-bold text-sm ${
+              message === "✓" ? 'text-green-600' : 'text-slate-600'
             }`}>
               {message}
             </div>
           )}
-          <div className="text-slate-500 text-sm">
+          <div className="text-slate-600 text-sm">
             Mistakes remaining: <span className="font-bold">{4 - mistakes}</span>
           </div>
         </div>
 
         {/* Win State */}
         {gameWon && (
-          <div className="bg-slate-800 border border-slate-700 p-6 rounded text-center mb-4">
-            <h2 className="text-xl font-bold text-white mb-2">You've mapped the structure.</h2>
-            <p className="text-slate-300 text-sm mb-4">These four dimensions work together: How you organize thinking determines what AI can learn from you. Better structure = better thought partnership.</p>
-            <div className="flex gap-2 justify-center">
+          <div className="bg-slate-100 border-2 border-slate-300 p-6 rounded-lg text-center mb-4">
+            <h2 className="text-xl font-bold text-slate-900 mb-2">You've mapped the structure.</h2>
+            <p className="text-slate-700 text-sm mb-4">These four dimensions work together: How you organize thinking determines what AI can learn from you. Better structure = better thought partnership.</p>
+            <div className="flex gap-2 justify-center flex-col md:flex-row">
               <button
                 onClick={() => initializeGame()}
-                className="px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-600 transition text-sm font-bold"
+                className="px-4 py-3 bg-slate-700 text-white rounded-lg hover:bg-slate-800 transition text-sm font-bold"
               >
                 Play Again
               </button>
               <button
                 onClick={() => setCurrentPuzzle((currentPuzzle + 1) % puzzles.length)}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-bold"
+                className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-bold"
               >
                 Next Puzzle
               </button>
@@ -287,3 +384,90 @@ const ConnectionsGame = () => {
 };
 
 export default ConnectionsGame;
+```
+
+---
+
+## **File 5: `.gitignore`**
+(Create in repo root)
+
+```
+node_modules/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+build/
+dist/
+.DS_Store
+```
+
+---
+
+## **File 6: `README.md`**
+(Update the existing one)
+
+```markdown
+# Connections Game
+
+An interactive puzzle game for understanding cognitive systems design and AI collaboration frameworks.
+
+## How to Play
+
+Find the four groups of connected terms. Each group represents a thinking framework or methodology.
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub
+2. Go to vercel.com
+3. Click "New Project"
+4. Select this repository
+5. Click "Deploy"
+
+That's it. Vercel handles the rest.
+
+## Local Development
+
+```bash
+npm install
+npm start
+```
+
+Your app will run on `http://localhost:3000`
+```
+
+---
+
+## **How to Add These Files to GitHub**
+
+1. Go to your `connections-game` repo on GitHub
+2. Click "Add file" → "Create new file"
+3. For each file above:
+   - Copy the file path (e.g., `package.json`)
+   - Paste the code
+   - Click "Commit changes"
+
+**Order matters:**
+- `package.json` (root level)
+- `public/index.html` (in public folder)
+- `src/index.js` (in src folder)
+- `src/App.jsx` (in src folder)
+- `.gitignore` (root level)
+- `README.md` (root level)
+
+---
+
+## **Then Deploy to Vercel**
+
+1. Go to vercel.com
+2. Sign in with GitHub
+3. Click "New Project"
+4. Select `connections-game`
+5. Click "Deploy"
+
+Vercel will automatically detect it's a React app, install dependencies, build it, and deploy it.
+
+Done.
